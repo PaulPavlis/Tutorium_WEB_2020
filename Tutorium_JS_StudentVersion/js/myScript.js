@@ -78,17 +78,130 @@ var checkbox = document.querySelector("#exampleCheck1");
 
 // ------ Create new Elements
 
-var newDiv = document.createElement("div");
-newDiv.className = "bg-success mt-3";
-newDiv.innerHTML = "New Div Element";
-newDiv.id = "newDiv";
-newDiv.setAttribute("whatever", "you want");
-console.log(newDiv);
+// var newDiv = document.createElement("div");
+// newDiv.className = "bg-success mt-3";
+// newDiv.innerHTML = "New Div Element";
+// newDiv.id = "newDiv";
+// newDiv.setAttribute("whatever", "you want");
+// console.log(newDiv);
 
-// document.body.appendChild(newDiv);
+// // document.body.appendChild(newDiv);
 
+// // var form = document.querySelector("form");
+// // form.insertBefore(newDiv, form.children[2]);
+
+// var submitButton = document.querySelector("#submitButton");
+// submitButton.after(newDiv);
+
+// Aufgabe: Füge ein weiteres Field im Form
+// mittels Javascript ein. Z.b. Username.
+// Es soll zwischen Email und Password sein
+// Anmerkung: Design ist nicht wichtig, da es
+// nur eine Übung ist
+
+// // create form group div
+// var newDivForm = document.createElement("div");
+// newDivForm.className = "form-group";
+
+// // create the label and the input
+// var newUsernameLabel = document.createElement("label");
+// newUsernameLabel.innerHTML = "Username";
+
+// var newUsernameInput = document.createElement("input");
+// newUsernameInput.className = "form-control";
+// newUsernameInput.placeholder = "Your Username";
+
+// // append the label and the input to the div
+// newDivForm.appendChild(newUsernameLabel);
+// newDivForm.appendChild(newUsernameInput);
+
+// // // append the div to the form
 // var form = document.querySelector("form");
-// form.insertBefore(newDiv, form.children[2]);
 
-var submitButton = document.querySelector("#submitButton");
-submitButton.after(newDiv);
+// // console.log(form);
+
+// form.children[0].after(newDivForm);
+
+// ----- Events
+
+var testButton = document.querySelector("#TestButton");
+
+testButton.addEventListener("click", buttonClicked);
+
+function buttonClicked(e) {
+    e.preventDefault();
+    // console.log("Button clicked");
+    // console.log(e);
+    // console.log(e.type);
+    // console.log(e.target);
+    // console.log(e.target.id);
+    // console.log(e.target.className);
+
+    // console.log(e.clientX);
+    // console.log(e.clientY);
+
+    // console.log(e.offsetX);
+    // console.log(e.offsetY);
+    // console.log(e.altKey);
+    // console.log(e.ctrlKey);
+    // console.log(e.shiftKey);
+}
+
+// var emailAdressInput = document.querySelector("#exampleInputEmail1");
+
+// emailAdressInput.addEventListener("focus", (e) => {
+//     console.log("On Focus: " + e.target.value);
+// });
+
+// emailAdressInput.addEventListener("blur", (e) => {
+//     console.log("On Blur: " + e.target.value);
+// });
+
+// emailAdressInput.addEventListener("keydown", (e) => {
+//     console.log("On Keydown: " + e.target.value);
+// });
+
+// document.body.addEventListener("mousemove", mouseMove);
+// function mouseMove(e) {
+//     // console.log(e.clientX);
+//     // console.log(e.clientY);
+
+//     var red = e.clientX % 256;
+//     var green = e.clientY % 256;
+//     var blue = (e.clientX + e.clientY) % 256;
+
+//     document.body.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+// }
+
+var form = document.querySelector("form");
+var userList = document.querySelector("#userList");
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    var email = document.querySelector("#exampleInputEmail1");
+    var password = document.querySelector("#exampleInputPassword1");
+    // console.log(password);
+
+    var newEntry = document.createElement("li");
+    newEntry.className = "list-group-item";
+    newEntry.innerHTML = `${email.value} -> ${password.value}`;
+
+    var newBtn = document.createElement("button");
+    newBtn.className = "btn btn-danger btn-sm float-right";
+    newBtn.innerHTML = "X";
+
+    //Add Event to btn
+    newBtn.addEventListener("click", deleteListEntry);
+
+    newEntry.appendChild(newBtn);
+    userList.appendChild(newEntry);
+
+    email.value = "";
+    password.value = "";
+});
+
+function deleteListEntry(e) {
+    // console.log(e.target.parentElement);
+    userList.removeChild(e.target.parentElement);
+}
