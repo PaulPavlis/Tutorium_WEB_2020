@@ -1,3 +1,7 @@
+<?php
+// $siteName = "greeting.php";
+?>
+
 <!DOCTYPE html>
 
 <html>
@@ -12,8 +16,65 @@
 </head>
 
 <body>
+    <?php
+    include("inc/nav.php");
+    ?>
     <div class="container mt-5">
-        Hello Random Person
+        Hello <?php
+                session_start();
+                // unset($_SESSION["session_username"]);
+                if (!empty($_SESSION["session_username"])) {
+                    echo $_SESSION["session_username"];
+                } else {
+                    echo "Random Person";
+                }
+                ?>
+
+
+
+
+        <?php
+        echo "<h3>Normal String</h3>";
+        if (!empty(filter_input(INPUT_COOKIE, "testcookie"))) {
+            $test1 = filter_input(INPUT_COOKIE, "testcookie");
+            echo $test1 . "<br>";
+            var_dump($test1) . "<br>";
+        }
+
+        echo "<h3>Cookie Array with Serialize</h3>";
+        if (!empty(filter_input(INPUT_COOKIE, "testcookie2"))) {
+            $test2 = filter_input(INPUT_COOKIE, "testcookie2");
+            echo $test2 . "<br>";
+            $testArray2 = unserialize($test2);
+            var_dump($testArray2) . "<br>";
+        }
+
+
+        echo "<h3>Cookie Array with Json</h3>";
+        if (!empty(filter_input(INPUT_COOKIE, "testcookie3"))) {
+            $test3 = filter_input(INPUT_COOKIE, "testcookie3");
+            echo $test3 . "<br>";
+            $testArray3 = json_decode($test3);
+            var_dump($testArray3) . "<br>";
+        }
+
+        echo "<h3>Cookie Assoc. Array with Json</h3>";
+        if (!empty(filter_input(INPUT_COOKIE, "testcookie4"))) {
+            $test4 = filter_input(INPUT_COOKIE, "testcookie4");
+            echo $test4 . "<br>";
+            $testArray4 = json_decode($test4);
+            var_dump($testArray4) . "<br>";
+        }
+
+        echo "<h3>Object with json</h3>";
+        if (!empty(filter_input(INPUT_COOKIE, "testobject"))) {
+            $testobjectString = filter_input(INPUT_COOKIE, "testobject");
+            echo $testobjectString . "<br>";
+            $testobject = json_decode($testobjectString);
+            var_dump($testobject) . "<br>";
+        }
+
+        ?>
     </div>
 
     <!-- Optional JavaScript -->

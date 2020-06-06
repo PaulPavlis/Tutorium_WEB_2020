@@ -8,19 +8,20 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-    <title>PHP Tutorium</title>
+    <title>Uebung - Teacher Login</title>
 </head>
 
 <body>
-    <?php
-    include("inc/nav.php");
-    ?>
-    <div class="container mt-5">
-        <h1 id="test">Hello, Ajax!</h1>
-        <button class="btn btn-primary mt-5" id="loadAjax">Click me</button>
-        <p id="inputAjax"></p>
+    <div class="container mt-3">
+
+        <?php
+        echo "<h3>Teacher login</h3>";
+        include("inc/teacher_login.php")
+        ?>
+
     </div>
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
