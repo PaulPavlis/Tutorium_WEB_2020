@@ -15,7 +15,18 @@
     <div class="container mt-3">
 
         <?php
+        //Start the session here instead of two seperate times in the php files
         session_start();
+        // Check if the User is logged in and display the correct page
+        // Maybe it is not the best way to do it like this, because if you set the 
+        // Session variable inside the include file, you have to reload the page again
+        // so that the correct one is included.accordion
+        // If you have no session you get displayed the form
+        // Then you send the form with username and password
+        // Page reloads and since there is still no session, the login form will be displayed
+        // In the login form the username and password is correct and you set the Session
+        // Because the page will not be reloaded normally, and the login form is already 
+        // included, it will not show the student_notes.php file until you reload.
         if (empty($_SESSION["logged_Username"])) {
             echo "<h3>Teacher login</h3>";
             include("inc/teacher_login.php");

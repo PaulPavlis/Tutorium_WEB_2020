@@ -16,6 +16,7 @@
 </head>
 
 <body>
+    <!-- Inlcude the navbar on all pages  -->
     <?php
     include("inc/nav.php");
     ?>
@@ -34,6 +35,7 @@
 
 
         <?php
+        //Normal output
         echo "<h3>Normal String</h3>";
         if (!empty(filter_input(INPUT_COOKIE, "testcookie"))) {
             $test1 = filter_input(INPUT_COOKIE, "testcookie");
@@ -45,6 +47,7 @@
         if (!empty(filter_input(INPUT_COOKIE, "testcookie2"))) {
             $test2 = filter_input(INPUT_COOKIE, "testcookie2");
             echo $test2 . "<br>";
+            //has to be made back to an array from the string to use it properly
             $testArray2 = unserialize($test2);
             var_dump($testArray2) . "<br>";
         }
@@ -54,6 +57,7 @@
         if (!empty(filter_input(INPUT_COOKIE, "testcookie3"))) {
             $test3 = filter_input(INPUT_COOKIE, "testcookie3");
             echo $test3 . "<br>";
+            //has to be made back to an array from the string to use it properly
             $testArray3 = json_decode($test3);
             var_dump($testArray3) . "<br>";
         }
@@ -62,6 +66,7 @@
         if (!empty(filter_input(INPUT_COOKIE, "testcookie4"))) {
             $test4 = filter_input(INPUT_COOKIE, "testcookie4");
             echo $test4 . "<br>";
+            //has to be made back to an array from the string to use it properly
             $testArray4 = json_decode($test4);
             var_dump($testArray4) . "<br>";
         }
@@ -70,6 +75,7 @@
         if (!empty(filter_input(INPUT_COOKIE, "testobject"))) {
             $testobjectString = filter_input(INPUT_COOKIE, "testobject");
             echo $testobjectString . "<br>";
+            //has to be made back to an object from the string to use it properly
             $testobject = json_decode($testobjectString);
             var_dump($testobject) . "<br>";
         }

@@ -23,10 +23,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $alert_password = true;
     }
 
+    //Check if both are set
     if (!empty($username) && !empty($password)) {
+        //Check first if the array has the username (if not exit) and afterwards
+        //check if the password in the array and the given password are ident
         if (!empty($user_logins[$username]) && $user_logins[$username] == $password) {
             echo "Should not be seen";
+            //Set session so the other page will be included
             $_SESSION["logged_Username"] = $username;
+            //read index.php for this. Basically reload the page so that the other one
+            //will be included
             header("Location: ");
         } else {
             $alert_kombination = true;

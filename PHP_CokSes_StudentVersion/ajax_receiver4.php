@@ -1,13 +1,16 @@
 <?php
+// If Post Request has been made
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    //Checks if the "name" value is in the POST requests
     if (filter_has_var(INPUT_POST, "name")) {
+        //Cleans the value
         $Name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
         echo "<h1>Hello $Name</h1>";
     } else {
         echo "<h1>Hello Unknown</h1>";
     }
 
-
+    //Just to show what is possible i included a fully functioning form
     if (filter_has_var(INPUT_POST, "form")) {
         if (filter_input(INPUT_POST, "form") == "sendme") {
 ?>

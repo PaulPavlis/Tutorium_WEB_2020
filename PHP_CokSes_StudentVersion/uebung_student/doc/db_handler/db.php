@@ -1,4 +1,5 @@
 <?php
+//Simulate a database - kind of i guess
 function getJsonData()
 {
     return '[

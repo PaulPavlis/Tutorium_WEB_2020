@@ -1,56 +1,74 @@
 <?php
+// Alte nicht so gute Variante. Auf jeder Seite einen siteName deklarieren und diesen 
+// dann in der Navbar abfragen und so dass active bestimmen. Bessere Lösung in nav.php
 // $siteName = "login.php";
+
+// Alerts für die Ausgabe - Müssen oben deklariert werden, da diese sonst nicht vorkommen
+// außer im Fehlerfall und es sonst unten einen Fehler gibt im HTML (außer man überprüft dort)
+// mit isset oder so
 $alert_username = false;
 $alert_password = false;
 $username = "";
 
+//Einfacher Cookie welcher 1 Stunde ab jetzt besteht
 $test = "hello cookie";
 setcookie("testcookie", $test, time() + 3600);
 
 //Delete
 setcookie("testcookie", $test, time() - 60);
+
+//Check if the variable is empty so that you dont get an name missing error
 if (!empty(filter_input(INPUT_COOKIE, "testcookie"))) {
     echo filter_input(INPUT_COOKIE, "testcookie");
 } else {
     echo "not set";
 }
 
+// Normal Array
 $test2 = array("assd", 234, "dsf", "", null, "P", time());
-// echo $test2;
-$test2[2] = 123;
-$test2[] = "last";
-// var_dump($test2);
+// echo $test2; //Not possible -> use var_dump
+$test2[2] = 123; // override
+$test2[] = "last"; //add to end
+// var_dump($test2); //output array or object (or anything)
 
+// ugly php method - dont use this - makes an array/object to a string so it can be transported
 $testString2 = serialize($test2);
 // echo $testString2;
 setcookie("testcookie2", $testString2, time() + 3600);
 
+// use this beautiful json code :) - makes an array/object to a string so it can be transported
 $testString3 = json_encode($test2);
 setcookie("testcookie3", $testString3, time() + 3600);
 
-
+// Associatives Array
 $test4 = array("test" => "hier", "dasfg" => 123, 1345 => "dsf");
 // echo $test4["test"];
-$test4["test"] = "dort";
-$test4["last"] = "entry";
+$test4["test"] = "dort"; //change the value of "test" to "dort"
+$test4["last"] = "entry"; //add something (to last)
 $testString4 = json_encode($test4);
 setcookie("testcookie4", $testString4, time() + 3600);
 
+// Has to be included or else all will fail (require)
 require("utility/testobject.php");
 
+// create a new object from the above file
 $testingObject = new test_class("Sarah", "Huckeby-Sanders");
+// pass object to other site
 setcookie("testobject", json_encode($testingObject), time() + 3600);
 
-
+// If a POST request is made
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "POST Request<br>";
-
+    //Unsafe and a bit ugly
     // echo $_GET["username"];
     // if (!empty($_GET["username"])) {
     //     echo $_GET["username"];
     // }
+
+    // Nicer and safer - Test if the post request has a variable username
     if (!empty(filter_input(INPUT_POST, "username"))) {
         // echo filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
+        // FILTER_SANITIZE_STRING -> gets rid of special harmful characters like scripts
         $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
     } else {
         $alert_username = true;
@@ -62,10 +80,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $alert_password = true;
     }
 
+    // If both is set, log in
     if (!empty($username) && !empty($password)) {
         echo "Session set";
+        // To start the session - has to be done
         session_start();
+        // Access it directly via Superglobal
         $_SESSION["session_username"] = $username;
+        // Move to different page
         header("Location: greeting.php");
     }
 }
@@ -85,15 +107,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+    <!-- Inlcude the navbar on all pages  -->
     <?php
     include("inc/nav.php");
     ?>
+
+
     <div class="container mt-5">
         <form action="" method="post">
+            <!-- Tests if the alert is set to true (if the request has the value in it-->
             <?php
             if ($alert_username) {
 
             ?>
+                <!-- Outputs it -->
                 <div class="alert alert-danger" role="alert">
                     Username vergessen
                 </div>

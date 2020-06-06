@@ -14,6 +14,7 @@
 </head>
 
 <body>
+    <!-- Inlcude the navbar on all pages  -->
     <?php
     include("inc/nav.php");
     ?>
