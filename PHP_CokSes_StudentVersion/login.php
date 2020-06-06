@@ -66,6 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Session set";
         session_start();
         $_SESSION["session_username"] = $username;
+        header("Location: greeting.php");
     }
 }
 

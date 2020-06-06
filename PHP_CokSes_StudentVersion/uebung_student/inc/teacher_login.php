@@ -1,6 +1,7 @@
 <?php
 $alert_username = false;
 $alert_password = false;
+$alert_kombination = false;
 $username = "";
 $password = "";
 
@@ -21,12 +22,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $alert_password = true;
     }
+
+    if (!empty($username) && !empty($password)) {
+        if (!empty($user_logins[$username]) && $user_logins[$username] == $password) {
+            echo "Should not be seen";
+            $_SESSION["logged_Username"] = $username;
+            header("Location: ");
+        } else {
+            $alert_kombination = true;
+        }
+    }
 }
 ?>
 
 
 <div class="container mt-3">
     <form action="" method="post">
+
+        <?php
+        if ($alert_kombination) {
+        ?>
+
+            <div class="alert alert-danger" role="alert">
+                Kombination aus Username und Passwort ist falsch
+            </div>
+
+        <?php
+        }
+        ?>
+
+
+
 
         <?php
         if ($alert_username) {

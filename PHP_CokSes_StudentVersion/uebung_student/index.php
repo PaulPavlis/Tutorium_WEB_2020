@@ -15,8 +15,15 @@
     <div class="container mt-3">
 
         <?php
-        echo "<h3>Teacher login</h3>";
-        include("inc/teacher_login.php")
+        session_start();
+        if (empty($_SESSION["logged_Username"])) {
+            echo "<h3>Teacher login</h3>";
+            include("inc/teacher_login.php");
+        } else {
+            echo "<h3>Student notes</h3>";
+            include("inc/student_notes.php");
+        }
+
         ?>
 
     </div>
