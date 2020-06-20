@@ -8,10 +8,10 @@ class Produkt
     public $Beschreibung = null;
     public $Bewertung = null;
 
-    public function __construct($ID, $NameIn, $Preis, $Beschreibung, $Bewertung)
+    public function __construct($ID, $Name, $Preis, $Beschreibung, $Bewertung)
     {
         $this->ID = $ID;
-        $this->Name = $NameIn;
+        $this->Name = $Name;
         $this->Preis = $Preis;
         $this->Beschreibung = $Beschreibung;
         $this->Bewertung = $Bewertung;

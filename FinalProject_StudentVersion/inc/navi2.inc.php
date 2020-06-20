@@ -12,11 +12,11 @@ if (!empty(filter_input(INPUT_GET, "menu"))) {
                             if ($menu == "home") {
                                 echo "active";
                             }
-                            ?>" href="index.php?menu=home" id="menuHome">Home</a>
+                            ?>" href="index2.php?menu=home" id="menuHome">Home</a>
     </li>
     <li class="nav-item">
         <a class="nav-link <?php if ($menu == "shop") {
                                 echo "active";
-                            } ?>" href="index.php?menu=shop" id="menuShop">Shop</a>
+                            } ?>" href="index2.php?menu=shop" id="menuShop">Shop</a>
     </li>
 </ul>
