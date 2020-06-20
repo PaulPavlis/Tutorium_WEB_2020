@@ -1,0 +1,19 @@
+header{
+    background-color: #414141;
+}
+
+header nav{
+    margin-top: -40px;
+}
+
+.nav-tabs a.nav-link, .nav-tabs a.nav-link:link{
+    color:white;
+}
+
+main{
+    margin-top: 30px;
+}
+
+.row .col-3{
+    text-align: center;
+}
